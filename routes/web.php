@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Home;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +14,10 @@ use App\Http\Controllers\BlogController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::prefix('/')->name('home.')->group(function () {
+    Route::get('/',[Home::class, 'index'])->name('home');
+    Route::get('/post',[Home::class, 'show'])->name('post');
 });
 
 

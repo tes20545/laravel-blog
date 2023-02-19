@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('contents');
+            $table->text('images');
             $table->softDeletes();
             $table->timestamps();
         });

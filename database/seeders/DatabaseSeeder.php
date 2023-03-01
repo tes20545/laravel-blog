@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
          \App\Models\User::factory(10)->create();
          \App\Models\Blog::factory(10)->create();
-
+            Team::factory(10)->create();
 
          \App\Models\User::factory()->create([
              'name' => 'Test User',

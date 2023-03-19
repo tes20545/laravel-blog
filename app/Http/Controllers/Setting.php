@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blog;
 use App\Models\SettingModel;
-use App\Models\TypeBlogModel;
 use Illuminate\Http\Request;
 
-class Home extends Controller
+class Setting extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $data = Blog::paginate(15);
-        $type = TypeBlogModel::all();
-        $setting = SettingModel::first();
-        return view('index',['data' => $data,'type' => $type,'setting' => $setting]);
-
+        $setting = SettingModel::get();
+        return view('setting.index',['data' => $setting]);
     }
 
     /**
@@ -30,7 +25,7 @@ class Home extends Controller
      */
     public function create()
     {
-        //
+        return view('setting.create');
     }
 
     /**
@@ -41,7 +36,16 @@ class Home extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $setting = new SettingModel();
+
+        $setting->name = $request->name;
+        $setting->description = $request->description;
+
+        if($setting->save()){
+            return redirect()->route('setting.index');
+        }else{
+            return redirect()->route('setting.index');
+        }
     }
 
     /**
@@ -52,9 +56,8 @@ class Home extends Controller
      */
     public function show($id)
     {
-        $home = Blog::where('id',$id)->first();
-        $type = TypeBlogModel::all();
-        return view('post',['home' => $home,'type' => $type]);
+        $setting = SettingModel::where('id',$id)->first();
+        return view('setting.show',['setting' => $setting]);
     }
 
     /**
@@ -77,7 +80,17 @@ class Home extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $setting = SettingModel::where('id',$id)->first();
+
+        $setting->name = $request->name;
+        $setting->description = $request->description;
+
+        if($setting->save())
+        {
+            return redirect()->route('setting.index');
+        }else{
+            return redirect()->route('setting.index');
+        }
     }
 
     /**
@@ -86,8 +99,15 @@ class Home extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $setting = SettingModel::where('id',$id);
+
+        if($setting->delete())
+        {
+            return redirect()->route('setting.index');
+        }else{
+            return redirect()->route('setting.index');
+        }
     }
 }

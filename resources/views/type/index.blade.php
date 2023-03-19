@@ -4,11 +4,11 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-xl font-semibold text-gray-900">บทความ</h1>
-                        <p class="mt-2 text-sm text-gray-700">เพิ่มสถานที่ท่องเที่ยว</p>
+                        <h1 class="text-xl font-semibold text-gray-900">ประเภทบทความ</h1>
+                        <p class="mt-2 text-sm text-gray-700">เพิ่มประเภทบทความ</p>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                        <a href="{{ route('blog.create') }}"><button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">เพิ่มบทความ</button></a>
+                        <a href="{{ route('type.create') }}"><button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">เพิ่มประเภทบทความ</button></a>
                     </div>
                 </div>
                 <div class="mt-8 flex flex-col">
@@ -19,29 +19,27 @@
                                     <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">ลำดับ</th>
-                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">หัวข้อ</th>
-                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">เนื้อหาบางส่วน</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ชื่อ</th>
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
-                                    @foreach($blog as $key => $b)
-                                    <tr>
-                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $key+1 }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $b->title }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ substr($b->contents,0,50),'...' }}</td>
-                                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                            <a href="{{ route('blog.edit',$b->id) }}" class="text-indigo-600 hover:text-indigo-900">แก้ไข</a>
-
-                                            <a href="javascript:void(0);"
-                                               id="deleteTopic_{{ $b->id }}"
-                                               class="ml-4 font-medium text-red-600 hover:underline deleteAss"
-                                               data-id="{{ route('blog.delete', $b->id) }}"
-                                               data-topic="{{ $b->title }}"
-                                               title="DELETE">
-                                                ลบ
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach($data as $key => $b)
+                                        <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $key+1 }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $b->name }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ substr($b->contents,0,50),'...' }}</td>
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                <a href="{{ route('type.edit',$b->id) }}" class="text-indigo-600 hover:text-indigo-900">แก้ไข</a>
+                                                <a href="javascript:void(0);"
+                                                   id="deleteTopic_{{ $b->id }}"
+                                                   class="ml-4 font-medium text-red-600 hover:underline deleteAss"
+                                                   data-id="{{ route('type.delete', $b->id) }}"
+                                                   data-topic="{{ $b->name }}"
+                                                   title="DELETE">
+                                                    ลบ
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -97,11 +95,11 @@
                             <button type="submit" id="confirmDelete"
 
                                     class=" w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                {{ __('backend/community.confirm') }}
+                                ยืนยัน
                             </button>
                             <button type="button" id="CancelDelete"
                                     class="closeModal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:w-auto sm:text-sm">
-                                {{ __('backend/community.cancel') }}
+                                ยกเลิก
 
                             </button>
                         </div>
@@ -119,7 +117,7 @@
             $('.deleteAss').on('click', function(e) {
                 $('#modalDelete').show();
                 let topic = $(this).data('topic')
-                $('#modal-body-delete').html('{{ __('backend/community.are_you_sure') }} <b>' + topic + '</b>' + ' ?')
+                $('#modal-body-delete').html('คุณแน่ใจที่จะลบ <b>' + topic + '</b>' + ' ?')
                 $('#confirmDelete').attr('action', $(this).data('id'))
             });
             $('.closeModal').on('click', function(e) {

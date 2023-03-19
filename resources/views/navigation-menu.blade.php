@@ -13,11 +13,20 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('แดชบอร์ด') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.index')">
-                        {{ __('Blog') }}
+                        {{ __('บทความ') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('type.index') }}" :active="request()->routeIs('type.index')">
+                        {{ __('ประเภท') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
+                        {{ __('ผู้ใช้งาน') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('setting.index') }}" :active="request()->routeIs('setting.index')">
+                        {{ __('ตั้งค่า') }}
                     </x-jet-nav-link>
                 </div>
             </div>

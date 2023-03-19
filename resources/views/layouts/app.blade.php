@@ -12,6 +12,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('storage/ckeditor/styles.css') }}">
+        <script src="https://ckeditor.com/apps/ckfinder/3.4.5/ckfinder.js"></script>
+        <script src="{{ asset('storage/ckeditor/ckeditor.js') }}"></script>
 
         <!-- Styles -->
         @livewireStyles

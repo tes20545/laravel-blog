@@ -4,7 +4,18 @@
 <x-navbar/>
 
 <!-- Text Header -->
-<x-header/>
+    <div>
+        <header class="w-full container mx-auto">
+            <div class="flex flex-col items-center py-12">
+                <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
+                    {{ $setting->name ?? 'ท่องเที่ยว'}}
+                </a>
+                <p class="text-lg text-gray-600">
+                    {{ $setting->description ?? 'ท่องเที่ยว'}}
+                </p>
+            </div>
+        </header>
+    </div>
 
 <!-- Topic Nav -->
 <nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
@@ -19,12 +30,9 @@
     </div>
     <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
         <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Technology</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Automotive</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Finance</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Politics</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Culture</a>
-            <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Sports</a>
+            @foreach($type as $eiei)
+                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{ $eiei->name }}</a>
+            @endforeach
         </div>
     </div>
 </nav>
@@ -34,46 +42,27 @@
 
     <!-- Posts Section -->
     <section class="w-full md:w-2/3 flex flex-col items-center px-3">
+        @if(!$data->isEmpty())
         @foreach($data as $blog)
             <article class="flex flex-col shadow my-4">
                 <!-- Article Image -->
-                <a href="#" class="hover:opacity-75">
-                    <img src="https://source.unsplash.com/collection/1346951/1000x500?sig=2">
+                <a href="{{ route('home.post',$blog->id) }}" class="hover:opacity-75">
+                    <img src="{{ asset('storage/'.$blog->images) }}">
                 </a>
                 <div class="bg-white flex flex-col justify-start p-6">
-                    <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Automotive, Finance</a>
+                    <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $blog->type }}</a>
                     <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $blog->title }}</a>
                     <p href="#" class="text-sm pb-3">
-                        By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>, Published on January 12th, 2020
+                        โดย <a href="#" class="font-semibold hover:text-gray-800">ผู้ดูแล</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($blog->created_at)->thaidate('j F Y') }}
                     </p>
-                    <a href="#" class="pb-6">{{ substr($blog->contents,0,50).'...' }}</a>
-                    <a href="#" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="uppercase text-gray-800 hover:text-black">อ่านต่อ<i class="fas fa-arrow-right"></i></a>
                 </div>
             </article>
         @endforeach
-
-        <article class="flex flex-col shadow my-4">
-            <!-- Article Image -->
-            <a href="#" class="hover:opacity-75">
-                <img src="https://source.unsplash.com/collection/1346951/1000x500?sig=3">
-            </a>
-            <div class="bg-white flex flex-col justify-start p-6">
-                <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Sports</a>
-                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">Lorem Ipsum Dolor Sit Amet Dolor Sit Amet</a>
-                <p href="#" class="text-sm pb-3">
-                    By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>, Published on October 22nd, 2019
-                </p>
-                <a href="#" class="pb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis porta dui. Ut eu iaculis massa. Sed ornare ligula lacus, quis iaculis dui porta volutpat. In sit amet posuere magna..</a>
-                <a href="#" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </article>
-
-        <!-- Pagination -->
-        <div class="flex items-center py-8">
-            <a href="#" class="h-10 w-10 bg-blue-800 hover:bg-blue-600 font-semibold text-white text-sm flex items-center justify-center">1</a>
-            <a href="#" class="h-10 w-10 font-semibold text-gray-800 hover:bg-blue-600 hover:text-white text-sm flex items-center justify-center">2</a>
-            <a href="#" class="h-10 w-10 font-semibold text-gray-800 hover:text-gray-900 text-sm flex items-center justify-center ml-3">Next <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
+        @else
+            <p>ไม่มีข้อมูล</p>
+        @endif
+            {{ $data->links() }}
 
     </section>
 
@@ -111,24 +100,6 @@
 </div>
 
 <footer class="w-full border-t bg-white pb-12">
-    <div
-        class="relative w-full flex items-center invisible md:visible md:pb-12"
-        x-data="getCarouselData()"
-    >
-        <button
-            class="absolute bg-blue-800 hover:bg-blue-700 text-white text-2xl font-bold hover:shadow rounded-full w-16 h-16 ml-12"
-            x-on:click="decrement()">
-            &#8592;
-        </button>
-        <template x-for="image in images.slice(currentIndex, currentIndex + 6)" :key="images.indexOf(image)">
-            <img class="w-1/6 hover:opacity-75" :src="image">
-        </template>
-        <button
-            class="absolute right-0 bg-blue-800 hover:bg-blue-700 text-white text-2xl font-bold hover:shadow rounded-full w-16 h-16 mr-12"
-            x-on:click="increment()">
-            &#8594;
-        </button>
-    </div>
     <div class="w-full container mx-auto flex flex-col items-center">
         <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
             <a href="#" class="uppercase px-3">About Us</a>
@@ -140,28 +111,4 @@
     </div>
 </footer>
 
-<script>
-    function getCarouselData() {
-        return {
-            currentIndex: 0,
-            images: [
-                'https://source.unsplash.com/collection/1346951/800x800?sig=1',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=2',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=3',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=4',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=5',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=6',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=7',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=8',
-                'https://source.unsplash.com/collection/1346951/800x800?sig=9',
-            ],
-            increment() {
-                this.currentIndex = this.currentIndex === this.images.length - 6 ? 0 : this.currentIndex + 1;
-            },
-            decrement() {
-                this.currentIndex = this.currentIndex === this.images.length - 6 ? 0 : this.currentIndex - 1;
-            },
-        }
-    }
-</script>
 </x-guest-layout>

@@ -22,9 +22,10 @@ use App\Http\Controllers\UserController;
 Route::prefix('/')->name('home.')->group(function () {
     Route::get('/', function () {
         return view('home');
-    });
+    })->name('index');
     Route::get('/home',[Home::class, 'index'])->name('home');
     Route::get('/post/{id}',[Home::class, 'show'])->name('post');
+    Route::get('/tag/{id}',[Home::class, 'type'])->name('tag');
 });
 
 

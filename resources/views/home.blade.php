@@ -239,31 +239,23 @@
                           <img src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="" class="h-8 w-auto">
                         </a>
       
+                        @if(request()->user() == null)
                         <div class="flex flex-1 items-center justify-end">
-                          <a href="#" class="hidden text-sm font-medium text-white lg:block">Search</a>
+
+                          <a href="{{ route('login') }}" class="hidden text-sm font-medium text-white lg:block">เข้าสู่ระบบ</a>
       
-                          <div class="flex items-center lg:ml-8">
-                            <!-- Help -->
-                            <a href="#" class="p-2 text-white lg:hidden">
-                              <span class="sr-only">Help</span>
-                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
-      </svg>
-                            </a>
-                            <a href="#" class="hidden text-sm font-medium text-white lg:block">Help</a>
-      
-                            <!-- Cart -->
-                            <div class="ml-4 flow-root lg:ml-8">
-                              <a href="#" class="group -m-2 flex items-center p-2">
-                                <svg class="h-6 w-6 flex-shrink-0 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
-      </svg>
-                                <span class="ml-2 text-sm font-medium text-white">0</span>
-                                <span class="sr-only">items in cart, view bag</span>
-                              </a>
-                            </div>
+                          <div class="flex items-center lg:ml-8"> 
+                            <a href="{{ route('register') }}" class="hidden text-sm font-medium text-white lg:block">ลงทะเบียน</a>
+                        
                           </div>
                         </div>
+                        @else
+                        <div class="flex flex-1 items-center justify-end">
+
+                            <a href="{{ route('login') }}" class="hidden text-sm font-medium text-white lg:block">แดชบอร์ด</a>
+
+                          </div>
+                          @endif
                       </div>
                     </div>
                   </div>
@@ -271,10 +263,14 @@
               </nav>
             </header>
       
-            <div class="relative mx-auto flex max-w-3xl flex-col items-center px-6 py-80 text-center lg:px-0 min-h-screen">
-              <h1 class="text-4xl font-bold tracking-tight text-white lg:text-6xl">New arrivals are here</h1>
-              <p class="mt-4 text-xl text-white">The new arrivals have, well, newly arrived. Check out the latest options from our summer small-batch release while they're still in stock.</p>
-              <a href="#" class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100">Shop New Arrivals</a>
+            <div class="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-96 text-center lg:px-0 min-h-screen">
+              <h1 class="text-4xl font-bold tracking-tight text-white lg:text-6xl">NA & CHANG WEB ABSTRACTION CAFE</h1>
+              <a href="{{ route('home.home') }}" class="animate-bounce mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100">สถานที่ท่องเที่ยวทั้งหมด
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="inline-block w-5 h-5">
+                    <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd" />
+                  </svg>
+                  
+              </a>
             </div>
           </div>
       

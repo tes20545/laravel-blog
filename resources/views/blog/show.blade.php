@@ -87,7 +87,7 @@
                         <br>
                         <label for="about" class="block text-sm font-medium text-gray-700">ลิ้งก์เส้นทาง</label>
                         <div class="mt-1">
-                            <input type="text" id="route" name="route" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <input type="text" id="route" name="route" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ $blog_select->route }}">
                         </div>
                     </div>
 

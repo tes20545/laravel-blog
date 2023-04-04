@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('contents');
             $table->text('images');
             $table->text('type');
+            $table->text('route');
             $table->softDeletes();
             $table->timestamps();
         });

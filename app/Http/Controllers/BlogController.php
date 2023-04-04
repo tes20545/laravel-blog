@@ -48,6 +48,7 @@ class BlogController extends Controller
             'contents' => 'required',
             'file_upload' => 'required',
             'type' => 'required',
+            'route' => 'required',
         ]);
 
         $blog           = new Blog();
@@ -55,6 +56,7 @@ class BlogController extends Controller
         $blog->contents = $request->contents;
         $blog->images   = $request->file('file_upload')->storePublicly('media/', ['disk' => 'public']); //รูปภาพหน้าปก;
         $blog->type     = $request->type;
+        $blog->route    = $request->route;
 
         if($blog->save()){
             return redirect()->route('blog.index');
@@ -88,6 +90,8 @@ class BlogController extends Controller
             'contents' => 'required',
             'file_upload' => 'required',
             'type' => 'required',
+            'route' => 'required',
+
         ]);
 
         $blog           = Blog::where('id',$id)->first();
@@ -96,6 +100,7 @@ class BlogController extends Controller
         $blog->contents = $request->contents;
         $blog->images   = $image;
         $blog->type     = $request->type;
+        $blog->route    = $request->route;
 
         if($blog->save()){
             return redirect()->route('blog.index');

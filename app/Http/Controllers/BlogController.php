@@ -86,7 +86,7 @@ class BlogController extends Controller
         }
 
         $request->validate([
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:255',
             'contents' => 'required',
             'file_upload' => 'required',
             'type' => 'required',

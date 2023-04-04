@@ -54,7 +54,8 @@ class Home extends Controller
     {
         $home = Blog::where('id',$id)->first();
         $type = TypeBlogModel::all();
-        return view('post',['home' => $home,'type' => $type]);
+        $setting = SettingModel::first();
+        return view('post',['home' => $home,'type' => $type, 'setting' => $setting]);
     }
 
     /**

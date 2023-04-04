@@ -117,7 +117,7 @@
     </form>
 </div>
 @else
-<div class="backdrop-blur bg-white">
+<div class="backdrop-blur-sm bg-white/30">
     <form action="#" class="mt-6 backdrop-blur-sm bg-white/30">
     <div class="overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
         <label for="title" class="sr-only">Title</label>

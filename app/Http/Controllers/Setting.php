@@ -40,7 +40,6 @@ class Setting extends Controller
 
         $setting->name = $request->name;
         $setting->description = $request->description;
-        $setting->image = $request->description;
 
         if($setting->save()){
             return redirect()->route('setting.index');

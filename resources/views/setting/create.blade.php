@@ -11,6 +11,49 @@
                                 <p class="mt-1 text-sm text-gray-500">สามารถเพิ่มชื่อเว็บไซต์</p>
                             </div>
                             <div class="mt-5 space-y-6 md:col-span-2 md:mt-0">
+                                <div x-data="showImage()">
+                                    <label for="file_upload"
+                                           class="@error('file_upload') text-red-500 @enderror text-lg font-medium leading-6 text-gray-900">
+                                        {{ __('รูปภาพแบนเนอร์') }}</label>
+                                    
+                                        <div
+                                        class="mt-1 mb-2 bg-white flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md @error('file_upload') border-red-500 @enderror">
+                                        <div class="space-y-1 text-center">
+            
+                                            <div class="relative flex flex-col items-center justify-center my-4">
+                                                <img id="preview" class="w-full max-h-48 mb-4"
+                                                     style="width:auto; height:auto">
+                                            </div>
+            
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="file_upload"
+                                                       class=" relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 @error('file_upload') text-red-500 @enderror">
+                                                    <span>{{ __('อัพโหลดภาพ') }}</span>
+                                                    <input id="file_upload" name="file_upload" type="file"
+                                                           accept="image/*" @change="showPreview(event)"
+                                                           class="sr-only">
+                                                </label>
+                                                <p
+                                                    class="text-sm ml-2 text-gray-500 @error('file_upload') text-red-500 @enderror">
+                                                    {{ __('ประเภทไฟล์') }} jpg, jpeg, png
+                                                    {{ __('ไฟล์ต้องไม่เกิน') }} 10
+                                                    {{ __('MB') }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('file_upload'))
+                                        @error('file_upload')
+                                        <div class="text-sm text-red-600">{{ $message }}</div>
+                                        @enderror
+                                    @else
+                                        <dt class="text-sm font-medium text-gray-500">
+                                            <small class="text-xs text-gray-400">*
+                                                {{ __('ขนาดรูปภาพ') }} 1920x400.
+                                            </small>
+                                        </dt>
+                                    @endif
+                                </div>
+                                
                                 <div>
                                     <label for="about"
                                            class="block text-sm font-medium leading-6 text-gray-900">ชื่อเว็บไซต์</label>
@@ -44,4 +87,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showImage() {
+        return {
+            showPreview(event) {
+                let src = URL.createObjectURL(event.target.files[0]);
+                let preview = document.getElementById("preview");
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        }
+    }
+    </script>
+    
 </x-app-layout>
+

@@ -51,7 +51,6 @@
             </a>
             <div class="bg-white flex flex-col justify-start p-6">
                 <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $home->type }}</a>
-                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">Lorem Ipsum Dolor Sit Amet Dolor Sit Amet</a>
                 <p href="#" class="text-sm pb-8">
                     โดย <a href="#" class="font-semibold hover:text-gray-800">ผู้ดูแล</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($home->created_at)->thaidate('j F Y') }}
                 </p>

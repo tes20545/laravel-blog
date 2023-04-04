@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('แก้ไขบทความ') }}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-12 bg-fixed w-full h-full text-primary-100 heropattern-jigsaw-white">
         <!-- Image gallery -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div>
@@ -12,6 +12,7 @@
                     @csrf
                     @method('PUT')
                     <div x-data="showImage()">
+                        <div class="bg-white py-8 rounded-lg px-8">
                         <label for="file_upload" class="text-lg font-medium leading-6 text-gray-900">
                             รูปปก
                         </label>
@@ -59,7 +60,9 @@
                             </dt>
                         @endif
                     </div>
+                    </div>
 
+                    <div class="mt-8 bg-white py-8 rounded-lg px-8">
                     <div>
                         <br>
                         <label for="about" class="block text-sm font-medium text-gray-700">ประเภทบทความ</label>
@@ -84,7 +87,8 @@
                     <label for="about" class="block text-sm font-medium text-gray-700">เนื้อหา</label>
                     <textarea id="editor" name="contents">{!! $blog_select->contents !!}</textarea>
                     <div class="px-4 py-3 text-right sm:px-6">
-                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">บันทึก</button>
+                    </div>
                     </div>
                 </form>
             </div>

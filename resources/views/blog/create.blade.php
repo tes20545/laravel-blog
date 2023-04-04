@@ -1,21 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('สร้างบทความ') }}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-12 bg-fixed w-full h-full text-primary-100 heropattern-jigsaw-white">
         <!-- Image gallery -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div>
                 <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div x-data="showImage()">
+                        <div class="bg-white py-8 rounded-lg px-8">
                         <label for="file_upload"
                                class="@error('file_upload') text-red-500 @enderror text-lg font-medium leading-6 text-gray-900">
-                            {{ __('backend/community.cover_photo') }}</label>
-                        <div
-                            class="mt-1 mb-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md @error('file_upload') border-red-500 @enderror">
+                            {{ __('รูปภาพหน้าปก') }}</label>
+                        
+                            <div
+                            class="mt-1 mb-2 bg-white flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md @error('file_upload') border-red-500 @enderror">
                             <div class="space-y-1 text-center">
 
                                 <div class="relative flex flex-col items-center justify-center my-4">
@@ -26,16 +28,16 @@
                                 <div class="flex text-sm text-gray-600">
                                     <label for="file_upload"
                                            class=" relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 @error('file_upload') text-red-500 @enderror">
-                                        <span>{{ __('backend/community.upload_photo') }}</span>
+                                        <span>{{ __('อัพโหลดภาพ') }}</span>
                                         <input id="file_upload" name="file_upload" type="file"
                                                accept="image/*" @change="showPreview(event)"
                                                class="sr-only">
                                     </label>
                                     <p
                                         class="text-sm ml-2 text-gray-500 @error('file_upload') text-red-500 @enderror">
-                                        {{ __('backend/community.file_type') }} jpg, jpeg, png
-                                        {{ __('backend/community.no_more_than') }} 1
-                                        {{ __('backend/community.mb') }}</p>
+                                        {{ __('ประเภทไฟล์') }} jpg, jpeg, png
+                                        {{ __('ไฟล์ต้องไม่เกิน') }} 10
+                                        {{ __('MB') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -46,12 +48,14 @@
                         @else
                             <dt class="text-sm font-medium text-gray-500">
                                 <small class="text-xs text-gray-400">*
-                                    {{ __('backend/community.cover_photo_size') }} 1920x400.
+                                    {{ __('ขนาดรูปภาพ') }} 1920x400.
                                 </small>
                             </dt>
                         @endif
                     </div>
+                    </div>
 
+                    <div class="mt-8 bg-white py-8 rounded-lg px-8">
                     <div>
                         <br>
                         <label for="about" class="block text-sm font-medium text-gray-700">ประเภทบทความ</label>
@@ -71,9 +75,12 @@
                             <textarea id="title" name="title" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="you@example.com"></textarea>
                         </div>
                     </div>
+
+                    <label for="about" class="mt-4 block text-sm font-medium text-gray-700">เนื้อหาบทความ</label>
                     <textarea id="editor" name="contents"></textarea>
                     <div class="px-4 py-3 text-right sm:px-6">
-                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+                        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">บันทึก</button>
+                    </div>
                     </div>
                 </form>
             </div>

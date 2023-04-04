@@ -42,6 +42,14 @@ class BlogController extends Controller
             return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]); // ส่งค่ากลับไปแสดงใน editor
 
         }
+
+        $request->validate([
+            'title' => 'required|max:255',
+            'contents' => 'required',
+            'file_upload' => 'required',
+            'type' => 'required',
+        ]);
+
         $blog           = new Blog();
         $blog->title    = $request->title;
         $blog->contents = $request->contents;
@@ -74,6 +82,13 @@ class BlogController extends Controller
         } else {
             $image = $request->old_img;
         }
+
+        $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'contents' => 'required',
+            'file_upload' => 'required',
+            'type' => 'required',
+        ]);
 
         $blog           = Blog::where('id',$id)->first();
 

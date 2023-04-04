@@ -16,7 +16,7 @@ class Home extends Controller
      */
     public function index()
     {
-        $data = Blog::paginate(15);
+        $data = Blog::paginate(5);
         $type = TypeBlogModel::all();
         $setting = SettingModel::first();
         return view('index',['data' => $data,'type' => $type,'setting' => $setting]);

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-12">
+    <div class="py-12 min-h-screen bg-fixed w-full h-full text-primary-100 heropattern-jigsaw-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="px-4 sm:px-6 lg:px-8">
                 <form class="space-y-6" action="{{ route('user.update',$user->id) }}" method="POST">

@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::wherenot('id',request()->user()->id)->get();
         return view('user.index',['data' => $user]);
     }
 

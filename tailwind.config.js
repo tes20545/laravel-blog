@@ -23,6 +23,7 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('flowbite/plugin'),
         require('tailwindcss-hero-patterns'),
+        require('@tailwindcss/aspect-ratio'),
     ],
         
 };

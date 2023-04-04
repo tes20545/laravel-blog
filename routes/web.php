@@ -20,7 +20,10 @@ use App\Http\Controllers\UserController;
 
 
 Route::prefix('/')->name('home.')->group(function () {
-    Route::get('/',[Home::class, 'index'])->name('home');
+    Route::get('/', function () {
+        return view('home');
+    });
+    Route::get('/home',[Home::class, 'index'])->name('home');
     Route::get('/post/{id}',[Home::class, 'show'])->name('post');
 });
 

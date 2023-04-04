@@ -25,7 +25,7 @@ class Home extends Controller
 
     public function type($id)
     {
-        $data = Blog::where('id',$id)->paginate(5);
+        $data = Blog::where('type',$id)->paginate(5);
         $type = TypeBlogModel::all();
         $setting = SettingModel::first();
         return view('type',['data' => $data,'type' => $type,'setting' => $setting]);

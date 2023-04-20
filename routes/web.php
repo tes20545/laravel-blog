@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\Review;
 use App\Http\Controllers\TypeBlog;
 use App\Http\Controllers\Setting;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,7 @@ Route::prefix('/')->name('home.')->group(function () {
     Route::get('/home',[Home::class, 'index'])->name('home');
     Route::get('/post/{id}',[Home::class, 'show'])->name('post');
     Route::get('/tag/{id}',[Home::class, 'type'])->name('tag');
+    Route::get('/user-review',[Home::class, 'review'])->name('review');
 });
 
 
@@ -74,5 +76,12 @@ Route::middleware([
         Route::post('/store', [UserController::class, 'store'])->name('store');
         Route::delete('/delete/{id}',[UserController::class, 'delete'])->name('delete');
     });
+
+    Route::prefix('/review')->name('review.')->group(function(){
+       Route::get('/',[Review::class,'index'])->name('index'); 
+       Route::get('/create',[Review::class,'create'])->name('create');
+       Route::post('/store',[Review::class,'store'])->name('store');
+    });
+
 
 });

@@ -16,11 +16,21 @@ class Home extends Controller
      */
     public function index()
     {
-        $data = Blog::paginate(5);
+        $data = Blog::wherenot('blog_or_review','review')->paginate(5);
         $type = TypeBlogModel::all();
         $setting = SettingModel::first();
         return view('index',['data' => $data,'type' => $type,'setting' => $setting]);
 
+    }
+
+    public function review()
+    {
+        $data = Blog::join('users','users.id','=','blog.user_id')
+        ->select('blog.*','users.name')
+        ->wherenot('blog_or_review','blog')
+        ->paginate(5);
+        $setting = SettingModel::first();
+        return view('review',['data' => $data,'setting' => $setting]);
     }
 
     public function type($id)

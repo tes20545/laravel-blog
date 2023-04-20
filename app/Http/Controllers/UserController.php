@@ -91,7 +91,6 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->email_verified_at = Carbon::now();
-        $user->password = Hash::make($request->password);
         $user->position = $request->position;
 
         if($user->save())

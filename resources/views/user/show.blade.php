@@ -30,14 +30,6 @@
                                 </div>
                                 <div>
                                     <label for="about"
-                                           class="block text-sm font-medium leading-6 text-gray-900">รหัสผ่าน</label>
-                                    <div class="mt-2">
-                                        <input type="password" name="password" id="password" value="{{ bcrypt($user->password) }}"
-                                               class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="about"
                                            class="block text-sm font-medium leading-6 text-gray-900">ตำแหน่ง</label>
                                     <div class="mt-2">
                                         <select id="position" name="position" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">

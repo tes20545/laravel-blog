@@ -81,22 +81,8 @@
 
         <div class="flow-root">
             <div class="-my-12 divide-y divide-gray-200">
-                <div class="py-12">
-                    <div class="my-4 flex items-center ">
-                            <h4 class="mt-6 text-sm font-bold text-gray-900">Emily Selman</h4>
-                    </div>
-
-                    <div class="mt-4 space-y-6 text-base italic text-gray-600 border-b border-gray-100">
-                        <p class="mb-6">This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-                    </div>
-
-                     <div class="my-4 flex items-center ">
-                            <h4 class="mt-6 text-sm font-bold text-gray-900">Emily Selman</h4>
-                    </div>
-
-                    <div class="mt-4 space-y-6 text-base italic text-gray-600 border-b border-gray-100">
-                        <p class="mb-6">This is the bag of my dreams. I took it on my last vacation and was able to fit an absurd amount of snacks for the many long and hungry flights.</p>
-                    </div>
+                <div class="py-6">
+                    <livewire:comment-show :blog_id='$home->id'/>
                 </div>
 
                 <!-- More reviews... -->
@@ -104,7 +90,7 @@
         </div>
 
 
-@if(request()->user() == null){}
+@if(request()->user() == null)
 <div class="backdrop-blur bg-white">
     <form action="#" class="mt-6">
     <div class="overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
@@ -124,24 +110,7 @@
     </form>
 </div>
 @else
-<div class="bg-white">
-    <form action="#" class="mt-6 "> 
-    <div class="overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 bg-white">
-        <label for="title" class="sr-only">Title</label>
-        <input type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-400 focus:ring-0" placeholder="Title">
-        <label for="description" class="sr-only">Description</label>
-        <textarea rows="2" name="description" id="description" class="block w-full resize-none border-0 py-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Write a description..."></textarea>
-    </div>
-    <div class="flex items-center justify-between space-x-3 border-t border-gray-200 px-2 py-2 sm:px-3">
-        <div class="flex">
-
-        </div>
-        <div class="flex-shrink-0">
-            <button type="submit" class="inline-flex items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">รีวิว</button>
-        </div>
-    </div>
-    </form>
-</div>
+    <livewire:comment :blog_id='$home->id'/>
 @endif
 
     </div>

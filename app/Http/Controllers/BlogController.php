@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\TypeBlogModel;
 use Illuminate\Http\Request;
 use App\Models\Blog;
-
+use App\Models\TypeBlogModel as Type;
+ 
 class BlogController extends Controller
 {
     public function index()
     {
         $blog = Blog::all();
-        return view('blog.index',['blog' => $blog]);
+        $type = Type::all()->count();
+        return view('blog.index',['blog' => $blog , 'type' => $type]);
     }
 
     public function show($id)
@@ -57,6 +59,8 @@ class BlogController extends Controller
         $blog->images   = $request->file('file_upload')->storePublicly('media/', ['disk' => 'public']); //รูปภาพหน้าปก;
         $blog->type     = $request->type;
         $blog->route    = $request->route;
+        $blog->blog_or_review = 'blog';
+        $blog->user_id  = request()->user()->id;
 
         if($blog->save()){
             return redirect()->route('blog.index');
@@ -101,6 +105,8 @@ class BlogController extends Controller
         $blog->images   = $image;
         $blog->type     = $request->type;
         $blog->route    = $request->route;
+        $blog->blog_or_review = 'blog';
+        $blog->user_id  = request()->user()->id;
 
         if($blog->save()){
             return redirect()->route('blog.index');

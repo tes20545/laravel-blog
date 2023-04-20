@@ -1,20 +1,14 @@
 <x-app-layout>
-    @if(count($type) == 0)
-        <script>
-            alert("กรุณาเพิ่มประเภทบทความ อย่างน้อย 1 ประเภท");
-            window.location.href="{{ route('blog.index')}}"
-        </script>
-    @else
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('สร้างบทความ') }}
+            {{ __('รีวิวสถานที่ท่องเที่ยว') }}
         </h2>
     </x-slot>
     <div class="py-12 bg-fixed w-full h-full text-primary-100 heropattern-jigsaw-white">
         <!-- Image gallery -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div>
-                <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('review.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div x-data="showImage()">
                         <div class="bg-white py-8 rounded-lg px-8">
@@ -62,17 +56,6 @@
                     </div>
 
                     <div class="mt-8 bg-white py-8 rounded-lg px-8">
-                    <div>
-                        <br>
-                        <label for="about" class="block text-sm font-medium text-gray-700">ประเภทบทความ</label>
-                        <div class="mt-1">
-                            <select id="type" name="type" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                @foreach($type as $t)
-                                    <option value="{{ $t->name }}">{{ $t->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
 
                     <div>
                         <br>
@@ -101,7 +84,6 @@
             </div>
         </div>
     </div>
-    @endif
 </x-app-layout>
 <script>
     const watchdog = new CKSource.EditorWatchdog();

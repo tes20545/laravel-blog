@@ -9,25 +9,30 @@
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('แดชบอร์ด') }}
-                    </x-jet-nav-link>
+                    @if(Auth::user()->position == 'admin')
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('แดชบอร์ด') }}
+                        </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.index')">
-                        {{ __('บทความ') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('type.index') }}" :active="request()->routeIs('type.index')">
-                        {{ __('ประเภท') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
-                        {{ __('ผู้ใช้งาน') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('setting.index') }}" :active="request()->routeIs('setting.index')">
-                        {{ __('ตั้งค่า') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.*')">
+                            {{ __('บทความ') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('type.index') }}" :active="request()->routeIs('type.*')">
+                            {{ __('ประเภท') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.*')">
+                            {{ __('ผู้ใช้งาน') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('setting.index') }}" :active="request()->routeIs('setting.*')">
+                            {{ __('ตั้งค่า') }}
+                        </x-jet-nav-link>
+                    @else
+                        <x-jet-nav-link href="{{ route('review.index') }}" :active="request()->routeIs('review.*')">
+                            {{ __('รีวิว') }}
+                        </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 

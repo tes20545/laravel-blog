@@ -11,7 +11,7 @@
             </nav>
 
             <div class="flex items-center text-lg no-underline text-white pr-6">
-                <a class="" href="#">
+                <a class="" href="https://www.facebook.com/profile.php?id=100091749566368">
                     <i class="fab fa-facebook"></i>
                 </a>
             </div>

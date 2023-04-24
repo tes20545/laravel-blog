@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{{ asset('storage/ckeditor/styles.css') }}">
         <script src="https://ckeditor.com/apps/ckfinder/3.4.5/ckfinder.js"></script>
         <script src="{{ asset('storage/ckeditor/ckeditor.js') }}"></script>
-        <script src="//code.tidio.co/kiryh1zl2zhu8ogljgow0drxuxj7bpay.js"></script>
+        <script src="//code.tidio.co/kiryh1zl2zhu8ogljgow0drxuxj7bpay.js" async></script>
 
         <!-- Styles -->
         @livewireStyles

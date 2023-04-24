@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comment', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('contents');
+            $table->text('contents')->nullable();
             $table->string('user_id');
             $table->string('blog_id');
             $table->softDeletes();

@@ -45,9 +45,17 @@ class Review extends Controller
         $blog->title    = $request->title;
         $blog->contents = $request->contents;
         $blog->images   = $request->file('file_upload')->storePublicly('media/', ['disk' => 'public']); //รูปภาพหน้าปก;
-        $blog->type     = 'review';
+        if(request()->user()->position == 'user'){
+            $blog->type     = 'review';
+        }else{
+            $blog->type     = 'blog';
+        }
         $blog->route    = $request->route;
-        $blog->blog_or_review = 'review';
+        if(request()->user()->position == 'user'){
+            $blog->blog_or_review     = 'review';
+        }else{
+            $blog->blog_or_review     = 'blog';
+        }
         $blog->user_id  = request()->user()->id;
 
         if($blog->save()){

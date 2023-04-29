@@ -36,6 +36,9 @@
         </div>
     </div>
 </nav>
+<div class="mt-6 mx-6">
+<livewire:search/>
+</div>
 
 
 <div class="container mx-auto flex flex-wrap py-6">
@@ -51,10 +54,11 @@
                     <img src="{{ asset('storage/'.$blog->images) }}">
                 
                 <div class="bg-white flex flex-col justify-start p-6">
-                    <a href="{{ route('home.post',$blog->id) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $blog->type }}</a>
+                    <a href="{{ route('home.post',$blog->id) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $blog->type }}</a>                    
                     <a href="{{ route('home.post',$blog->id) }}" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $blog->title }}</a>
+                    <p>Rating: <strong>{{ $blog->rating ?? 0 }}</strong> ⭐</p>
                     <p href="{{ route('home.post',$blog->id) }}" class="text-sm pb-3">
-                        โดย <a href="#" class="font-semibold hover:text-gray-800">ผู้ดูแล</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($blog->created_at)->thaidate('j F Y') }}
+                        โดย <a href="#" class="font-semibold hover:text-gray-800">{{ $blog->name }}</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($blog->created_at)->thaidate('j F Y') }}
                     </p>
                     <a href="{{ route('home.post',$blog->id) }}" class="uppercase text-gray-800 hover:text-black">อ่านต่อ<i class="fas fa-arrow-right"></i></a>
                 </div>

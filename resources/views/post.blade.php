@@ -48,7 +48,7 @@
             <div class="bg-white flex flex-col justify-start p-6 rounded-lg">
                 <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $home->type }}</a>
                 <p href="#" class="text-sm pb-8">
-                    โดย <a href="#" class="font-semibold hover:text-gray-800">ผู้ดูแล</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($home->created_at)->thaidate('j F Y') }}
+                    โดย <a href="#" class="font-semibold hover:text-gray-800">{{ $home->name }}</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($home->created_at)->thaidate('j F Y') }}
                 </p>
                 {!! $home->contents !!}
                 
@@ -77,7 +77,7 @@
 
 <div class="max-w-full bg-gray-100 px-8 mx-auto pb-6 rounded-lg mb-12 ">
     <div class="max-w-full bg-white px-8 mx-auto pb-6 rounded-lg mb-12 shadow-md">
-        <h3 class="text-2xl py-6">รีวิวโดยผู้ใช้</h3>
+        <h3 class="text-2xl pt-6">รีวิวโดยผู้ใช้</h3>
 
         <div class="flow-root">
             <div class="-my-12 divide-y divide-gray-200">

@@ -13,7 +13,9 @@
                 </div>
             </header>
         </div>
-
+        <div class="mt-6 mx-6">
+            <livewire:search/>
+            </div>
     <div class="container mx-auto flex flex-wrap py-6">
     
         <!-- Posts Section -->
@@ -29,6 +31,7 @@
                     <div class="bg-white flex flex-col justify-start p-6">
                         <a href="{{ route('home.post',$blog->id) }}" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $blog->type }}</a>
                         <a href="{{ route('home.post',$blog->id) }}" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $blog->title }}</a>
+                        <p>Rating: <strong>{{ $blog->rating ?? 0 }}</strong> ⭐</p>
                         <p href="{{ route('home.post',$blog->id) }}" class="text-sm pb-3">
                             โดย <a href="#" class="font-semibold hover:text-gray-800">{{ $blog->name ?? 'ผู้ดูแล' }}</a>, เผยแพร่เมื่อ {{ \Carbon\Carbon::parse($blog->created_at)->thaidate('j F Y') }}
                         </p>

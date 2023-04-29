@@ -16,7 +16,7 @@ class Home extends Controller
      */
     public function index()
     {
-        $data = Blog::wherenot('blog_or_review','review')->paginate(5);
+        $data = Blog::join('users','blog.user_id','=','users.id')->wherenot('blog_or_review','review')->orderBy('rating','desc')->paginate(5);
         $type = TypeBlogModel::all();
         $setting = SettingModel::first();
         return view('index',['data' => $data,'type' => $type,'setting' => $setting]);
@@ -69,7 +69,7 @@ class Home extends Controller
      */
     public function show($id)
     {
-        $home = Blog::where('id',$id)->first();
+        $home = Blog::join('users','blog.user_id','=','users.id')->where('blog.id',$id)->first();
         $type = TypeBlogModel::all();
         $setting = SettingModel::first();
         return view('post',['home' => $home,'type' => $type, 'setting' => $setting]);

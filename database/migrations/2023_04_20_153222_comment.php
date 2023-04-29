@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('contents')->nullable();
             $table->string('user_id');
             $table->string('blog_id');
+            $table->integer('rating');
             $table->softDeletes();
             $table->timestamps();
         });

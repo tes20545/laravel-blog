@@ -28,9 +28,13 @@
                         <x-jet-nav-link href="{{ route('setting.index') }}" :active="request()->routeIs('setting.*')">
                             {{ __('ตั้งค่า') }}
                         </x-jet-nav-link>
-                    @else
+                    @elseif(Auth::user()->position == 'user')
                         <x-jet-nav-link href="{{ route('review.index') }}" :active="request()->routeIs('review.*')">
                             {{ __('รีวิว') }}
+                        </x-jet-nav-link>
+                    @else
+                        <x-jet-nav-link href="{{ route('review.index') }}" :active="request()->routeIs('review.*')">
+                            {{ __('บทความ') }}
                         </x-jet-nav-link>
                     @endif
                 </div>

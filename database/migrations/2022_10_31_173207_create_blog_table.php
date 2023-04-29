@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('route');
             $table->string('blog_or_review');
             $table->string('user_id');
+            $table->string('rating')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

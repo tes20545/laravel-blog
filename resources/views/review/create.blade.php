@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('รีวิวสถานที่ท่องเที่ยว') }}
+            @if(request()->user()->position == 'user')
+                {{ __('รีวิวสถานที่ท่องเที่ยว') }}
+            @else
+                {{ __('เพิ่มบทความร้าน') }}
+            @endif
         </h2>
     </x-slot>
     <div class="py-12 bg-fixed w-full h-full text-primary-100 heropattern-jigsaw-white">

@@ -83,5 +83,4 @@ Route::middleware([
        Route::post('/store',[Review::class,'store'])->name('store');
     });
 
-
 });

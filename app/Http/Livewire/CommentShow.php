@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Blog;
 use Livewire\Component;
 use App\Models\Comment as ModelsComment;
 
@@ -25,5 +26,12 @@ class CommentShow extends Component
     public function delete($id)
     {
         ModelsComment::find($id)->delete();
+        $rating = ModelsComment::where('blog_id', $this->blog_id)->avg('rating');
+        
+        if($rating == null){
+            Blog::where('id', $this->blog_id)->update(['rating' => null]);
+        }else{
+            Blog::where('id',$this->blog_id)->update(['rating' => $rating]);
+        }
     }
 }

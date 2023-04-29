@@ -12,4 +12,5 @@ class Comment extends Model
     use SoftDeletes;
 
     protected $table = 'comment';
+
 }

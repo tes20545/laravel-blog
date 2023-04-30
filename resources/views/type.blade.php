@@ -36,7 +36,9 @@
         </div>
     </div>
 </nav>
-
+<div class="mt-6 mx-6">
+    <livewire:search :type="$type_id"/>
+</div>
 
 <div class="container mx-auto flex flex-wrap py-6">
 

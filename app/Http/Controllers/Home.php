@@ -38,7 +38,7 @@ class Home extends Controller
         $data = Blog::where('type',$id)->paginate(5);
         $type = TypeBlogModel::all();
         $setting = SettingModel::first();
-        return view('type',['data' => $data,'type' => $type,'setting' => $setting]);
+        return view('type',['data' => $data,'type' => $type,'setting' => $setting,'type_id' => $id]);
     }
     /**
      * Show the form for creating a new resource.

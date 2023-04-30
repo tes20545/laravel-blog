@@ -9,7 +9,7 @@ class Review extends Controller
 {
     public function index()
     {
-        $review = Blog::where('blog_or_review','review')->where('user_id', '=', request()->user()->id)->get();
+        $review = Blog::whereIn('blog_or_review',['review','blog'])->where('user_id', '=', request()->user()->id)->get();
         return view('review.index',['review' => $review]);
     }
 

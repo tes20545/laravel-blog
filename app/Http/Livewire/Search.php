@@ -7,7 +7,7 @@ use App\Models\Blog;
 
 class Search extends Component
 {
-    public $search,$data,$length = 0;
+    public $type,$search,$data,$length = 0;
 
     protected $listeners = ['length'];
 
@@ -18,6 +18,18 @@ class Search extends Component
 
     public function search_func()
     {
+        if($this->type != null){
+            
+            $this->data = Blog::where([
+
+                ['type', '=', $this->type],
+        
+                ['title', 'LIKE', "%{$this->search}%"],
+
+                ['contents', 'LIKE', "%{$this->search}%"]
+        
+            ])->get();
+        }
         $this->data = Blog::where('title','LIKE', "%{$this->search}%")->Where('contents','LIKE', "%{$this->search}%")->get();
     }
 

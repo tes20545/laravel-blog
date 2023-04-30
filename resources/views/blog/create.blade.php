@@ -16,6 +16,7 @@
             <div>
                 <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('POST')
                     <div x-data="showImage()">
                         <div class="bg-white py-8 rounded-lg px-8">
                         <label for="file_upload"

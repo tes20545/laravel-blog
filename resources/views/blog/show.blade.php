@@ -129,7 +129,7 @@
         .create(document.querySelector('#editor'), {
             licenseKey: '',
             ckfinder: {
-                uploadUrl: '{{ route('blog.update',$blog_select->id) . '?_token=' . csrf_token() }}',
+                uploadUrl: '{{ route('blog.store') . '?_token=' . csrf_token() }}',
             },
 
         })
